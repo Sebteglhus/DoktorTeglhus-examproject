@@ -1,0 +1,59 @@
+<h1 class="mt-4">Dashboard</h1>
+<form action="/users/logout?_method=DELETE" method="POST" style="padding-bottom: 15px">
+    <button type="submit" class="btn btn-primary">Logout</button>
+</form>
+<a href="/users/register" class="btn btn-secondary">Register new Doctor</a>
+<a href="/board" class="btn btn-secondary">Bullet Board</a>
+<a href="/patients/view" class="btn btn-secondary">Patients</a>
+<a href="/Diseases/create" class="btn btn-secondary">Add a disease to a patient</a>
+<a href="/Prescriptions/create" class="btn btn-secondary">Create a new prescription</a>
+</br></br></br>
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3">
+                <i class="fas fa-user-plus"></i> New doctor successfully created!
+            </h1>
+            <h1 class="text-center mb-3">
+                <i class="fas fa-user-plus"></i> Want to register another new doctor?
+            </h1>
+            <form action="/users/register" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input
+                            type="text"
+                            id="doctorName"
+                            name="doctorName"
+                            class="form-control"
+                            placeholder="Enter Name"
+                            value="<%= typeof name != 'undefined' ? name : '' %>"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input
+                            type="password"
+                            id="doctorPassword"
+                            name="doctorPassword"
+                            class="form-control"
+                            placeholder="Create Password"
+                            value="<%= typeof password != 'undefined' ? password : '' %>"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input
+                            type="text"
+                            id="doctorUsername"
+                            name="doctorUsername"
+                            class="form-control"
+                            placeholder="Enter username"
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Register
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

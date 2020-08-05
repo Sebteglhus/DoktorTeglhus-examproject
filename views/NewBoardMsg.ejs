@@ -1,0 +1,45 @@
+<h1 class="mt-4">Dashboard</h1>
+<form action="/users/logout?_method=DELETE" method="POST" style="padding-bottom: 15px">
+    <button type="submit" class="btn btn-primary">Logout</button>
+</form>
+<a href="/users/register" class="btn btn-secondary">Register new Doctor</a>
+<a href="/board" class="btn btn-secondary">Bullet Board</a>
+<a href="/patients/view" class="btn btn-secondary">Patients</a>
+<a href="/Diseases/create" class="btn btn-secondary">Add a disease to a patient</a>
+<a href="/Prescriptions/create" class="btn btn-secondary">Create a new prescription</a>
+</br></br></br>
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3">
+                <i class="fas fa-user-plus"></i> Use the form below to submit a new notice.
+            </h1>
+            <form action="/board/new" method="POST">
+                <div class="form-group">
+                    <label for="fromDoctorName">Created by:</label>
+                    <input
+                            type="text"
+                            id="fromDoctorName"
+                            name="fromDoctorName"
+                            class="form-control"
+                            placeholder="Who is creating this notice?"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="messageContent">Message:</label>
+                    <input
+                            type="text"
+                            id="messageContent"
+                            name="messageContent"
+                            class="form-control"
+                            maxlength="250"
+                            placeholder="Message, max 250 characters"
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Post notice
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<h1 class="mt-4">Dashboard</h1>
+<form action="/users/logout?_method=DELETE" method="POST" style="padding-bottom: 15px">
+    <button type="submit" class="btn btn-primary">Logout</button>
+</form>
+<a href="/users/register" class="btn btn-secondary">Register new Doctor</a>
+<a href="/board" class="btn btn-secondary">Bullet Board</a>
+<a href="/patients/view" class="btn btn-secondary">Patients</a>
+<a href="/Diseases/create" class="btn btn-secondary">Add a disease to a patient</a>
+<a href="/Prescriptions/create" class="btn btn-secondary">Create a new prescription</a>
+</br></br></br>
+</br>
+</br>
+<a href="/patients/create" class="btn btn-primary">Create a new patient</a>
+</br>
+<div class="form-group">
+<form action="/patients/search" method="POST">
+    <label for="Search">To search, please enter patient's first or last name below</label>
+    </br>
+    <input
+            type="text"
+            id="pName"
+            name="pName"
+            class="form-control"
+            placeholder="Search..."
+    />
+    <button type="submit" class="btn btn-primary">
+        Search
+    </button>
+</form>
+</div>
+</br>
+<h2>Search results:</h2>
+<% for(const patient of searchResult) {%>
+<div class="jumbotron">
+    <p class="lead"><%= patient.name %></p>
+    <hr class="my-4">
+
+    <b>Diseases:</b>
+    <% for (const diseases of patient.diseases) {%>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <b>Disease name:</b>
+                </br>
+                <%= diseases.diseaseName %>
+                </br>
+                </br>
+                <b>Symptoms:</b>
+                </br>
+                <%= diseases.symptoms %>
+                </br>
+                </br>
+                <% if (diseases.status == "1") {%>
+                    <span class="badge badge-primary badge-pill">Current</span>
+                <% } else if (diseases.status == "0") {%>
+                    <span class="badge badge-primary badge-pill">Inactive</span>
+                <% }%>
+            </li>
+        </ul>
+    <% }%>
+</br>
+    <hr class="my-4">
+    <b>Prescriptions:</b>
+    <% for (const prescriptions of patient.prescriptions) {%>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <b>Medication:</b>
+                </br>
+                <%= prescriptions.medication %>
+                </br>
+                </br>
+                <b>Duration:</b>
+                </br>
+                <%= prescriptions.duration %>
+                </br>
+                </br>
+                <b>For Disease:</b>
+                </br>
+                <%= prescriptions.forDisease %>
+                </br>
+                </br>
+                <% if (prescriptions.medStatus == "1") {%>
+                <span class="badge badge-primary badge-pill">Current</span>
+                <% } else {%>
+                    <span class="badge badge-primary badge-pill">Inactive</span>
+                <% }%>
+            </li>
+        </ul>
+        <% }%>
+</br>
+    <hr class="my-4">
+    <b>Doctor:</b>
+</br>
+    <p><%= patient.inhousedoctor %></p>
+    </br>
+    <form action="/patients/delete?_method=DELETE" method="POST">
+        <input type="hidden" id="patientID" name="patientID" value=<%= patient._id %>>
+        <button type="submit" class="btn btn-primary">Delete this patient from the Database</button>
+    </form>
+</div>
+<% } %>
