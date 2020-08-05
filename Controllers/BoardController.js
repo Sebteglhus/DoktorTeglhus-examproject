@@ -1,5 +1,6 @@
 const boardClass = require('../Models/Board');
 
+//defining the controller of the board aspect of the application
 class boardController {
     constructor(boardModel) {
         this.boardModel = boardModel;

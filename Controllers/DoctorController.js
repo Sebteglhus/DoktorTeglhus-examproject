@@ -2,15 +2,16 @@ const Doctor = require('../Models/DoctorModel');
 const DoctorClass = require('../Models/Doctor');
 const bcrypt = require('bcryptjs');
 const LocalStrategy = require('passport-local').Strategy;
-
+//defining the doctorController
 class DoctorController {
     constructor(doctorModel) {
         this.doctorModel = doctorModel;
     }
+    //renders
     renderLoginPage = (req, res) => res.render('login');
 
     renderRegisterPage = (req, res) => res.render('Register');
-
+    //data insertion
     createNewDoctor =
         async (req, res) => {
             const hashedPassword = await bcrypt.hash(req.body.doctorPassword, 12);
@@ -20,10 +21,11 @@ class DoctorController {
                 req.body.doctorUsername,
                 []
             );
+            //awaiting mongo response through the model
             await this.doctorModel.insertDoctor(newDoctor);
             res.render('registersuccess');
         };
-
+//initing passport for login and auth
     initialize(passport, findDoctorByUsername, getUserById) {
         const AuthenticateUser = async (username, password, done) => {
             const user = await this.doctorModel.findDoctorByUsername(username);

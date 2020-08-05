@@ -1,5 +1,5 @@
 const DiseasesClass = require('../Models/Diseases');
-
+//defining controller for adding diseases to patients
 class DiseasesController {
     constructor(DiseasesModel) {
         this.DiseasesModel = DiseasesModel;

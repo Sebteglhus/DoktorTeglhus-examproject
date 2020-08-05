@@ -4,13 +4,14 @@ class patientcontroller {
     constructor(patientsModel) {
         this.patientsModel = patientsModel;
     }
-
+    //rendering views
     renderNewPatient = async (req, res) => {
         res.render('patientRegistration');
     };
     renderPatientPage = async (req, res) => {
         res.render('patients');
     };
+    //inserting data
     RegisterPatient = async (req, res) => {
         let newPatient = new patientClass(
             req.body.pName,
@@ -22,6 +23,7 @@ class patientcontroller {
         await this.patientsModel.insertPatient(newPatient, doctorName);
         res.render('patientRegisterSuccess');
     };
+    //searching for specific patients, based on searchParam
     patientSearch = async (req, res) => {
         let SearchParam = req.body.pName;
         let searchResult = await this.patientsModel.patientLookup(SearchParam);
@@ -30,6 +32,7 @@ class patientcontroller {
         });
         console.log(searchResult);
     };
+    //deleting patient based on DeleteParam
     patientDelete = async (req, res) => {
         let DeleteParam = req.body.patientID;
         console.log(DeleteParam);
