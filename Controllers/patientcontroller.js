@@ -28,7 +28,7 @@ class patientcontroller {
         let SearchParam = req.body.pName;
         let searchResult = await this.patientsModel.patientLookup(SearchParam);
         res.render('patientsView', {
-            searchResult : searchResult
+            searchResult : searchResult //instructing EJS that the searchResult array is to be defined as the searchResult array returned from patientsModel.patientLookup(SearchParam)
         });
         console.log(searchResult);
     };

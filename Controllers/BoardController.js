@@ -4,14 +4,14 @@ const boardClass = require('../Models/Board');
 class boardController {
     constructor(boardModel) {
         this.boardModel = boardModel;
-    }
+    } //class methods for rendering the different views being defined -- will look the same in other controller-classes in this folder
     renderBoard = async(req, res) => {
         let allMessages  = await this.boardModel.loadMessages();
         res.render('Board', {
             Messages: allMessages
         });
     };
-    renderNew = async (req, res) => {
+    renderNew = async (req, res) => { 
         res.render('NewBoardMsg');
     };
     postMessage = async (req, res) => {

@@ -16,7 +16,7 @@ app.use(flash());
 
 //passing basic options to express-session
 app.use(session({
-    secret: 'CBS69909!',
+    secret: 'REDACTED!',
     resave: false,
     saveUninitialized: false
     }));

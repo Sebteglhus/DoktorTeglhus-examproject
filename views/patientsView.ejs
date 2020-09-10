@@ -30,14 +30,15 @@
 </div>
 </br>
 <h2>Search results:</h2>
-<!-- Nested for..of loops used to write data of the patient from the search -->
-<% for(const patient of searchResult) {%>
+<!-- Nested for..of loops used to write data of the patient from the search. These are written in native javascript -->
+<!-- Using EJS, we're looping over each object in the array called searchResult, which is being defined in the _____-->
+<% for(const patient of searchResult) {%> <!-- from here on, it's html with javascript embedded, using EJS. JS is inside the <%=...%> tags -->
 <div class="jumbotron">
-    <p class="lead"><%= patient.name %></p>
+    <p class="lead"><%= patient.name %></p> <!-- taking the name attribute of the patient object and writing it into a <p></p> tag of HTML, so the name will be displayed-->
     <hr class="my-4">
 
     <b>Diseases:</b>
-    <% for (const diseases of patient.diseases) {%>
+    <% for (const diseases of patient.diseases) {%> <!-- A nested for..of loop - meaning a for..of loop inside another for..of loop-->
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <b>Disease name:</b>
@@ -50,18 +51,18 @@
                 <%= diseases.symptoms %>
                 </br>
                 </br>
-                <% if (diseases.status == "1") {%>
+                <% if (diseases.status == "1") {%> <!-- if statement loading a current badge in the html if the status is 1 (which is the same as true as a boolean)-->
                     <span class="badge badge-primary badge-pill">Current</span>
-                <% } else if (diseases.status == "0") {%>
+                <% } else if (diseases.status == "0") {%> <!-- Else if it's 0 (which is equal to a false boolean, 1 and up are true booleans), loads a 'inactive' badge-->
                     <span class="badge badge-primary badge-pill">Inactive</span>
-                <% }%>
+                <% }%> <!-- end of if statement-->
             </li>
         </ul>
-    <% }%>
+    <% }%> <!-- End of nested for..of loop-->
 </br>
     <hr class="my-4">
     <b>Prescriptions:</b>
-    <% for (const prescriptions of patient.prescriptions) {%>
+    <% for (const prescriptions of patient.prescriptions) {%> <!-- Secondary nested for..of loop-->
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <b>Medication:</b>
@@ -79,14 +80,14 @@
                 <%= prescriptions.forDisease %>
                 </br>
                 </br>
-                <% if (prescriptions.medStatus == "1") {%>
+                <% if (prescriptions.medStatus == "1") {%> <!-- secondary if statement, same as before-->
                 <span class="badge badge-primary badge-pill">Current</span>
                 <% } else {%>
                     <span class="badge badge-primary badge-pill">Inactive</span>
                 <% }%>
             </li>
         </ul>
-        <% }%>
+        <% }%> <!-- end of secondary nested for..of loop-->
 </br>
     <hr class="my-4">
     <b>Doctor:</b>
@@ -98,4 +99,4 @@
         <button type="submit" class="btn btn-primary">Delete this patient from the Database</button>
     </form>
 </div>
-<% } %>
+<% } %> <!-- End of primary for..of loop-->
